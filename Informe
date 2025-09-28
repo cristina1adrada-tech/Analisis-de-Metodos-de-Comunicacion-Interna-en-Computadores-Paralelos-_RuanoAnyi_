@@ -1,5 +1,5 @@
 # Copia tu archivo al repositorio local
-cp informe.pdf /ruta/a/tu/repositorio/
+cp informe.pdf https://github.com/cristina1adrada-tech/Analisis-de-Metodos-de-Comunicacion-Interna-en-Computadores-Paralelos-_RuanoAnyi_
 
 # Ingresa al repositorio
 cd /ruta/a/tu/repositorio/
