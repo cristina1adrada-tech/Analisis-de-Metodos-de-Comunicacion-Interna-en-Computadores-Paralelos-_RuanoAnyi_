@@ -3,102 +3,140 @@
 [![Status](https://img.shields.io/badge/Estado-Investigación%20Finalizada-success)](https://github.com/TuUsuario/NombreDelRepo)
 [![License](https://img.shields.io/badge/License-MIT-blue)](https://opensource.org/licenses/MIT)
 
-## 👤 Autoría y Afiliación
+# Análisis de Métodos de Comunicación Interna en Computadores Paralelos para Grandes Modelos de Lenguaje (LLMs)
 
-| Rol | Nombre | Institución | Contacto |
-| :--- | :--- | :--- | :--- |
-| **Investigador Principal** | Anyi Cristina Ruano Adrada | Fundación Universitaria Internacional de la Rioja | cristina1adrada@gmail.com |
-| **Asignatura** | Estructura de Computadores | **Ubicación** | Pasto, Nariño, Colombia |
+**Autora:** Cristina Adrada  
+**Fecha:** 2025  
 
-***
+---
 
-## 💡 Abstract (Resumen Ejecutivo)
+## Introducción
 
-El desarrollo exponencial de los **Grandes Modelos de Lenguaje (LLMs)**, como ChatGPT, Gemini y Claude, se basa fundamentalmente en los avances en **computación paralela y arquitecturas de alto rendimiento**. Estos sistemas requieren infraestructuras capaces de procesar un millón de millones de parámetros con eficiencia, donde la **comunicación interna** entre procesadores y nodos es un factor crítico.
+El desarrollo exponencial de los grandes modelos de lenguaje (LLMs), como *ChatGPT*, *Gemini* y *Claude*, ha sido posible gracias a los avances en computación paralela y arquitecturas de alto rendimiento [3], [10]. Estos sistemas requieren infraestructuras capaces de procesar billones de parámetros de manera eficiente, donde la comunicación interna entre procesadores y nodos constituye un factor crítico [1], [2], [14].  
 
-Este trabajo **profundiza** en los métodos de comunicación (paso de mensajes vs. memoria compartida), las topologías de interconexión (Dragonfly, Torus), y el diseño de multiprocesadores (arquitecturas híbridas CPU+GPU). Además, **evalúa críticamente** la capacidad de los tres LLMs líderes para actuar como fuentes de conocimiento técnico especializado en este dominio.
+La revolución de los LLMs no radica únicamente en innovaciones algorítmicas, sino en una revolución de escala impulsada por arquitecturas de cómputo paralelo de última generación [3], [10], [18]. En este contexto, resulta esencial analizar los métodos de comunicación empleados en computadores paralelos, las topologías de interconexión, las estrategias de enrutamiento y los diseños de multiprocesadores que sostienen a los LLMs contemporáneos [2].  
 
-### 🎯 Objetivos de la Investigación
-1.  **Cuantificar la relación** entre la teoría arquitectónica (MIMD) y la práctica de los sistemas de IA a escala.
-2.  **Evaluar la profundidad y consistencia** de las respuestas proporcionadas por diferentes LLMs ante preguntas técnicas.
-3.  **Analizar la idoneidad y limitaciones** de los LLMs como herramientas de investigación primaria en arquitectura de computadores.
+Los objetivos principales de este trabajo son:  
 
-***
+1. Analizar la relación entre los fundamentos de la arquitectura de computadores y las necesidades de infraestructura para el entrenamiento y la operación de LLMs [7].  
+2. Evaluar comparativamente la capacidad de distintos LLMs para generar conocimiento técnico especializado [10].  
+3. Reflexionar sobre la utilidad y las limitaciones de los LLMs como fuente de investigación en arquitectura de computadores [11].  
 
-## 🧠 Marco Teórico: Fundamentos de Arquitectura Paralela para LLMs
+---
 
-### 1. Modelos de Paralelismo y Comunicación
-La infraestructura de los LLMs se apoya en el modelo **MIMD (Multiple Instruction, Multiple Data)**, fundamental para el paralelismo híbrido.
+## Marco Teórico
 
-| Mecanismo de Comunicación | Ventaja Principal | Desventaja Principal | Aplicación en LLMs |
-| :--- | :--- | :--- | :--- |
-| **Memoria Compartida** | Programación sencilla (lectura/escritura). | Limita la escalabilidad; alto *overhead* de coherencia. | Comunicación **intra-nodo** (entre GPUs en un mismo servidor, ej. vía NVLink). |
-| **Paso de Mensajes** | Altamente escalable a miles de nodos. | Más complejo de programar (explícito send/receive). | Comunicación **inter-nodo** (entre servidores, ej. vía InfiniBand y MPI/NCCL). |
+### Modelos de paralelismo (Taxonomía de Flynn)
 
-### 2. Topologías de Red Críticas
-La latencia y el *bisection bandwidth* son determinantes.
+- **SISD (Single Instruction, Single Data):** Arquitectura secuencial clásica de Von Neumann [1], inadecuada para LLMs [2].  
+- **SIMD (Single Instruction, Multiple Data):** Propia de GPUs modernas, permite ejecutar operaciones vectoriales masivas, optimizando cálculos matriciales [2], [14].  
+- **MISD (Multiple Instruction, Single Data):** Poco usado; su aplicación en LLMs es marginal [10], [18].  
+- **MIMD (Multiple Instruction, Multiple Data):** Base de supercomputadores y clusters actuales, clave para implementar paralelismo híbrido en LLMs [9], [14].  
 
-| Topología | Diámetro de Red | Latencia Global | Uso en HPC/AI |
-| :--- | :--- | :--- | :--- |
-| **Fat-Tree** | Bajo | Moderada | Uso general, alta redundancia. |
-| **Torus** | Moderado | Baja (para vecinos) | Usado en *pods* de Google TPU. |
-| **Dragonfly** | **Mínimo** | **Muy Baja** | Ideal para LLMs. Minimiza la distancia para las operaciones **All-Reduce** (sincronización de gradientes). |
+### Topologías de red
 
-### 3. Estrategias de Enrutamiento y Desafíos
-El enrutamiento adaptativo es clave para manejar la congestión dinámica de los LLMs.
+- **Bus compartido:** Simple pero con escalabilidad limitada [4], [24].  
+- **Malla (Mesh):** Escalable y usada en clusters GPU; la latencia aumenta con la distancia [4], [5].  
+- **Hipercubo:** Alta conectividad, útil en sistemas a gran escala [25].  
+- **Torus y Dragonfly:** Predominantes en supercomputadores modernos. Dragonfly minimiza latencia y diámetro de red, siendo ideal para *All-Reduce* en LLMs [3], [25].  
 
-| Estrategia | Ventajas | Desafíos/Riesgos |
-| :--- | :--- | :--- |
-| **Determinístico** | Predictible, simple. | Puntos fijos de congestión. |
-| **Adaptativo** | Balanceo de carga, resiliencia a fallos. | Mayor complejidad; riesgo de **livelock** o reordenamiento de paquetes. |
+### Estrategias de enrutamiento
 
-***
+- **Determinístico (XY):** Simplicidad, pero riesgo de congestión [2].  
+- **Adaptativo:** Selección dinámica según congestión; preferido en HPC [5].  
+- **Aleatorio:** Menos común, pero puede evitar bloqueos [24].  
 
-## 🔬 Metodología de Validación Empírica
+### Diseño de multiprocesadores
 
-Se seleccionaron tres modelos líderes para garantizar diversidad de entrenamiento y enfoque, consultados de forma idéntica el **24 de mayo de 2024**.
+- **UMA (Uniform Memory Access):** Acceso uniforme a memoria, baja escalabilidad [14].  
+- **NUMA (Non-Uniform Memory Access):** Mejora la escalabilidad, pero requiere coherencia de caché [2].  
+- **Híbridos (clusters de nodos NUMA):** Predominantes en supercomputadores modernos [3].  
 
-| Modelo LLM | Versión | Fecha de Consulta | Plataforma/Entrenamiento |
-| :--- | :--- | :--- | :--- |
-| **ChatGPT-4 Turbo** | `gpt-4-turbo` | 24/05/2024 | OpenAI |
-| **Gemini Advanced** | Gemini Ultra 1.0 | 24/05/2024 | Google |
-| **Claude 3 Opus** | `claude-3-opus` | 24/05/2024 | Anthropic |
+---
 
-***
+## Metodología
 
-## 📊 Resultados: Tablas Comparativas de Respuestas
+Se realizó un análisis comparativo consultando a tres LLMs —ChatGPT, Gemini y Claude— mediante un conjunto de **preguntas técnicas** sobre:  
 
-### Comparativa de Topologías Recomendadas
+1. Arquitecturas MIMD.  
+2. Topologías de red.  
+3. Estrategias de enrutamiento.  
+4. Diseño de multiprocesadores.  
 
-| Modelo LLM | Topología Recomendada | Argumento Clave | Profundidad Técnica |
-| :--- | :--- | :--- | :--- |
-| **ChatGPT-4 Turbo** | Dragonfly, Torus | Minimiza el diámetro de red para All-Reduce. | Media |
-| **Gemini Advanced** | Dragonfly, Hypercubo, Torus avanzados | Alto *bisection bandwidth*, optimización TPU. | Media-Alta (con ejemplos reales) |
-| **Claude 3 Opus** | Dragonfly | Baja latencia, alta tolerancia a la congestión. | **Alta** |
+Las respuestas fueron documentadas en tablas, comparadas y evaluadas en términos de:  
 
-### Análisis de Limitaciones Arquitectónicas (Las "3 Walls")
+- **Precisión técnica.**  
+- **Nivel de detalle.**  
+- **Coherencia y limitaciones.**  
 
-| Limitación | ChatGPT-4 Turbo | Gemini Advanced | Claude 3 Opus |
-| :--- | :--- | :--- | :--- |
-| **Energía** | Consumo desmesurado. | Consumo insostenible. | La **Power Wall**. |
-| **Memoria** | Límites de capacidad HBM. | Parámetros que no caben en memoria. | La **Memory Wall** (capacidad HBM). |
-| **Comunicación** | Saturación colectiva. | Ley de Amdahl (comunicación domina). | La **Interconnect Wall** (latencia/ancho de banda). |
+---
 
-***
+## Resultados: Respuestas de los LLMs
 
-## 💬 Conclusiones y Discusión Crítica
+### Pregunta 1: ¿Qué es una arquitectura MIMD?
 
-### 1. Hallazgo Principal: El Cuello de Botella de Interconexión
-El estudio concluye que el factor más limitante para la escalabilidad futura de los LLMs no es la potencia de cómputo (FLOPs), sino la eficiencia de la **Interconnect Wall**. La elección de topologías como **Dragonfly** es una solución de ingeniería directa para mitigar la latencia de las operaciones globales.
+| Modelo    | Respuesta resumida                                                                 |
+|-----------|------------------------------------------------------------------------------------|
+| ChatGPT   | Explica MIMD como múltiples procesadores ejecutando instrucciones diferentes sobre datos distintos. Relación con supercomputadores y clusters. |
+| Gemini    | Similar a ChatGPT, enfatiza flexibilidad y ejemplos de uso en sistemas distribuidos. |
+| Claude    | Precisión conceptual, incluye limitaciones prácticas y menciona paralelismo híbrido. |
 
-### 2. Evaluación de LLMs como Fuente de Investigación
-| Aspecto | Evaluación | Reflexión |
-| :--- | :--- | :--- |
-| **Fiabilidad** | Alta (90%) en conceptos fundamentales. | Los tres modelos coinciden en la base teórica (MIMD, paso de mensajes). |
-| **Profundidad** | Variable (Claude > Gemini > ChatGPT). | **Ningún LLM reemplaza fuentes primarias.** Carecen de datos cuantitativos (latencias, *benchmarks*) y perspectiva sobre controversias de diseño. |
-| **Utilidad** | Excelente para síntesis y punto de partida. | Son herramientas de *pre-investigación* que deben ser validadas con *papers* de NVIDIA, Cray o AMD. |
+---
 
-***
+### Pregunta 2: ¿Cuáles son las topologías de red más usadas en computadores paralelos?
+
+| Modelo    | Respuesta resumida                                                                 |
+|-----------|------------------------------------------------------------------------------------|
+| ChatGPT   | Malla, hipercubo, anillo, torus, Dragonfly.                                        |
+| Gemini    | Incluye mismas topologías y ejemplos de uso industrial.                            |
+| Claude    | Detalla ventajas/desventajas de cada topología.                                    |
+
+---
+
+### Pregunta 3: ¿Qué estrategias de enrutamiento se utilizan?
+
+| Modelo    | Respuesta resumida                                                                 |
+|-----------|------------------------------------------------------------------------------------|
+| ChatGPT   | Enrutamiento determinístico y adaptativo.                                          |
+| Gemini    | Añade ejemplos de implementaciones prácticas.                                      |
+| Claude    | Explica impacto en latencia, escalabilidad y confiabilidad.                        |
+
+---
+
+### Pregunta 4: ¿Cómo se diseñan los multiprocesadores modernos?
+
+| Modelo    | Respuesta resumida                                                                 |
+|-----------|------------------------------------------------------------------------------------|
+| ChatGPT   | UMA, NUMA, coherencia de caché.                                                    |
+| Gemini    | Similar, añade NUMA distribuido.                                                   |
+| Claude    | Más completo, integra NUMA + clusters + coherencia avanzada.                       |
+
+---
+
+## Análisis Comparativo y Crítico
+
+1. **Consistencia técnica:** Todos los modelos ofrecen respuestas correctas, aunque con diferente profundidad.  
+2. **Nivel de detalle:** Claude tiende a ser más completo y crítico; Gemini destaca en ejemplos aplicados; ChatGPT ofrece explicaciones claras y accesibles.  
+3. **Limitaciones:** Ningún modelo ofrece referencias explícitas ni ejemplos de casos reales a gran escala. Esto confirma que los LLMs sirven como punto de partida, pero requieren verificación bibliográfica [3], [7].  
+
+---
+
+## Aplicaciones en el contexto de LLMs
+
+- El entrenamiento distribuido de LLMs depende de redes como **InfiniBand** y topologías **Dragonfly**, que permiten minimizar la latencia [3].  
+- Estrategias de enrutamiento adaptativo son esenciales para evitar congestión durante operaciones colectivas [5].  
+- Los sistemas híbridos (clusters NUMA + GPUs) constituyen la infraestructura predominante en proyectos como GPT-4 y Gemini [10].  
+
+---
+
+## Conclusiones
+
+1. La arquitectura paralela y la comunicación interna son pilares esenciales en el desarrollo de LLMs.  
+2. Las topologías Dragonfly y torus, junto a enrutamiento adaptativo, representan la base tecnológica más prometedora.  
+3. Los LLMs pueden apoyar la investigación técnica como **herramienta inicial de exploración**, pero no sustituyen el rigor académico ni las fuentes primarias [11].  
+4. La complementariedad de ChatGPT, Gemini y Claude sugiere que el uso combinado de varios modelos puede enriquecer la investigación.  
+
+---
 
 ## 📚 Referencias Bibliográficas
 
@@ -130,4 +168,5 @@ El estudio concluye que el factor más limitante para la escalabilidad futura de
 * **[26]**	R. Suppi y E. Luque, Sistemas Distribuidos y Paralelos: Conceptos y Aplicaciones. Madrid: Pearson Educación, 2020.
 * **[27]**	Red Española de Supercomputación, "Guía de mejores prácticas para computación de altas prestaciones", Documentación técnica, 2023. [En línea]. Disponible: https://www.res.es/documentacion
 * **[28]**	A. Gómez Martínez y S. Ramos Pollán, "Arquitecturas híbridas CPU-GPU para inteligencia artificial: retos y oportunidades", Inteligencia Artificial: Revista Iberoamericana de Inteligencia Artificial, vol. 26, núm. 72, pp. 67-82, 2023.
-
+  
+---
