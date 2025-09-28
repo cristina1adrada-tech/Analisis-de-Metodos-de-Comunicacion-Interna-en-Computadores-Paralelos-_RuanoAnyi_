@@ -1,14 +1,1 @@
-# Copia tu archivo al repositorio local
-cp informe.pdf https://github.com/cristina1adrada-tech/Analisis-de-Metodos-de-Comunicacion-Interna-en-Computadores-Paralelos-_RuanoAnyi_
 
-# Ingresa al repositorio
-cd /ruta/a/tu/repositorio/
-
-# Agrega el archivo al control de versiones
-git add informe.pdf
-
-# Crea un commit con mensaje
-git commit -m "Agrego informe completo en PDF"
-
-# Sube los cambios a GitHub
-git push origin main
