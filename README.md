@@ -5,8 +5,16 @@
 
 # Análisis de Métodos de Comunicación Interna en Computadores Paralelos para Grandes Modelos de Lenguaje (LLMs)
 
-**Autora:** Cristina Adrada  
-**Fecha:** 2025  
+# 💻 Análisis de Métodos de Comunicación Interna en Computadores Paralelos para Sistemas LLM
+
+[![Status](https://img.shields.io/badge/Estado-Investigación%20Finalizada-success)](https://github.com/TuUsuario/NombreDelRepo)
+[![License](https://img.shields.io/badge/License-MIT-blue)](https://opensource.org/licenses/MIT)
+
+## 👤 Autoría y Afiliación
+
+| Rol | Nombre | Institución | Contacto |
+| :--- | :--- | :--- | :--- |
+| **Investigador Principal** | Anyi Cristina Ruano Adrada | Fundación Universitaria Internacional de la Rioja | cristina1adrada@gmail.com |
 
 ---
 
