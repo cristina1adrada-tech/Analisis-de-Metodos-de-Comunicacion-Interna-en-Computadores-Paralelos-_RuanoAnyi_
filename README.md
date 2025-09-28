@@ -138,7 +138,7 @@ Las respuestas fueron documentadas en tablas, comparadas y evaluadas en término
 4. La complementariedad de ChatGPT, Gemini y Claude sugiere que el uso combinado de varios modelos puede enriquecer la investigación.  
 
 ---
-📄 [Descargar informe completo en PDF](Trabajo. Análisis de Métodos de Comunicación Interna en Computadores Paralelos_EC_RuanoAnyi_.pdf)
+📄[Descargar informe completo en PDF] Trabajo. Análisis de Métodos de Comunicación Interna en Computadores Paralelos_EC_RuanoAnyi_.pdf
 
 ## 📚 Referencias Bibliográficas
 
