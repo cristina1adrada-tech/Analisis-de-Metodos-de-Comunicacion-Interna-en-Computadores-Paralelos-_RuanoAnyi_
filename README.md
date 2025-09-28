@@ -1,2 +1,1 @@
-# Analisis-de-Metodos-de-Comunicacion-Interna-en-Computadores-Paralelos-_RuanoAnyi_
-Análisis de arquitectura de computadores paralelos para LLMs.
+# Análisis comparativo de la arquitectura paralela y métodos de comunicación para sistemas LLM (ChatGPT, Gemini, Claude).
