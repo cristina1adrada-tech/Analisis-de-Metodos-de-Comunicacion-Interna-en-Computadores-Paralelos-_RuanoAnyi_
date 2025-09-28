@@ -5,9 +5,9 @@
 
 ## 👤 Autoría y Afiliación
 
-| Rol | Nombre | Institución | Contacto |
-| :--- | :--- | :--- | :--- |
-| **Investigador Principal** | Anyi Cristina Ruano Adrada | Fundación Universitaria Internacional de la Rioja | cristina1adrada@gmail.com |
+| Rol | Nombre | Institución | Contacto |Asignatura| Año |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Autor** | Anyi Cristina Ruano Adrada | Fundación Universitaria Internacional de la Rioja | cristina1adrada@gmail.com | Estructura de Computadores |2025 |
 
 ---
 
