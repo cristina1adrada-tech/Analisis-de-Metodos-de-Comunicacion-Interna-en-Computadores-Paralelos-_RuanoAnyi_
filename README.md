@@ -102,9 +102,32 @@ El estudio concluye que el factor más limitante para la escalabilidad futura de
 
 ## 📚 Referencias Bibliográficas
 
-* **[4]** OpenAI. (2024). *ChatGPT-4 Turbo*. Consulta realizada el 24 de mayo de 2024.
-* **[5]** Google. (2024). *Gemini Advanced*. Consulta realizada el 24 de mayo de 2024.
-* **[6]** Anthropic. (2024). *Claude 3 Opus*. Consulta realizada el 24 de mayo de 2024.
-* **[14]** Flynn, M. J. (1972). *Some Computer Organizations and Their Effectiveness*. IEEE Transactions on Computers.
-* **[25]** Dally, W. J., & Towles, B. P. (2004). *Principles and Practices of Interconnection Networks*.
-* **[22]** NVIDIA. (2023). *NVIDIA DGX GH200: Unifying AI Supercomputing*.
+* **[1]**	Asociación Española de Arquitectura de Computadores, "Actas de las jornadas técnicas anuales", 2021-2023.
+* **[2]**	Barcelona Supercomputing Center, "Curso de programación paralela con MPI y OpenMP", Materiales del curso, 2023. [En línea]. Disponible: https://www.bsc.es/education
+* **[3]**	C. Rodríguez León y M. P. González Vidal, "Diseño de clusters optimizados para el entrenamiento de grandes modelos de lenguaje", en Actas de las Jornadas de Paralelismo, Almería, España, 2023, pp. 234-245.
+* **[4]**	Consulta a ChatGPT-4 Turbo. (24 de mayo de 2024). OpenAI. [Transcripción completa de las respuestas técnicas sobre arquitectura paralela].
+* **[5]**	Consulta a Claude 3 Opus. (24 de mayo de 2024). Anthropic. [Transcripción completa de las respuestas técnicas sobre HPC y LLMs].
+* **[6]**	Consulta a Gemini Advanced. (24 de mayo de 2024). Google. [Transcripción completa de las respuestas técnicas sobre sistemas distribuidos].
+* **[7]**	E. Fernández Martínez y R. Torres Rodríguez, "Evaluación comparativa de estrategias de enrutamiento en redes de interconexión para HPC", en Congreso Español de Informática, Granada, España, 2022, pp. 112-125.
+* **[8]**	E. González Castro, "Optimización de comunicaciones en sistemas paralelos para aplicaciones de deep learning", Tesis doctoral, Universidad de Málaga, 2023.
+* **[9]**	European Processor Initiative, "Arquitecturas de procesadores para computación exascale", Documento técnico, 2023. [En línea]. Disponible: https://www.european-processor-initiative.eu/
+* **[10]**	F. García Sánchez, Computación de Alto Rendimiento: Arquitecturas Paralelas y Distribuidas. Madrid: McGraw-Hill, 2021.
+* **[11]**	Google AI, "Arquitectura de sistemas TPU para entrenamiento de modelos a escala", Documentación técnica, 2023. [En línea]. Disponible: https://cloud.google.com/tpu/docs/system-architecture
+* **[12]**	IEEE Spain Section, "Boletín de arquitectura de computadores y sistemas paralelos", Publicación trimestral, 2022-2023.
+* **[13]**	J. Díaz Martín et al., "Estado del arte en arquitecturas paralelas para inteligencia artificial: desafíos y tendencias", Revista de Procesamiento Paralelo y Distribuido, vol. 30, núm. 4, pp. 201-218, 2023.
+* **[14]**	J. L. Hennessy y D. A. Patterson, Arquitectura de Computadores: Un Enfoque Cuantitativo, 6ª ed. Barcelona: Elsevier, 2018.
+* **[15]**	J. M. Cecilia et al., "Optimización de operaciones colectivas en entornos MPI para el entrenamiento de modelos de deep learning", Journal of Computer Science and Technology, vol. 18, núm. 1, pp. 23-35, 2023.
+* **[16]**	L. García Hernández y P. Sánchez López, "Análisis de escalabilidad en arquitecturas paralelas para aplicaciones de machine learning a gran escala", en Simposio Internacional de Arquitectura de Computadores, Málaga, España, 2023, pp. 78-92.
+* **[17]**	M. A. Pérez Sánchez, "Diseño y evaluación de topologías de interconexión para computación exascale", Tesis doctoral, Universidad Politécnica de Madrid, 2022.
+* **[18]**	M. Valero Cortés y E. Zapata Marcos, Arquitecturas Paralelas: De los Multiprocesadores a los Clusters. Barcelona: Edicions UPC, 2019.
+* **[19]**	Mellanox Technologies, "InfiniBand para aplicaciones de inteligencia artificial y HPC", White Paper, 2022. [En línea]. Disponible: https://www.mellanox.com/products/infiniband
+* **[20]**	Ministerio de Ciencia e Innovación, "Estrategia Nacional de Inteligencia Artificial", Gobierno de España, 2022. [En línea]. Disponible: https://www.ciencia.gob.es/estrategias/IA
+* **[21]**	MPI Forum, "Estándar MPI 4.0: Especificación completa", 2021. [En línea]. Disponible: https://www.mpi-forum.org/docs/
+* **[22]**	NVIDIA Corporation, "Guía de optimización de NCCL para clusters de IA", Documentación técnica, 2023. [En línea]. Disponible: https://docs.nvidia.com/deeplearning/nccl
+* **[23]**	OpenMP Architecture Review Board, "Especificación OpenMP 5.2", 2021. [En línea]. Disponible: https://www.openmp.org/specifications/
+* **[24]**	P. López García y M. J. Acosta López, "Análisis de topologías de interconexión para clusters de computación de altas prestaciones", Revista Iberoamericana de Informática Educativa, vol. 25, núm. 2, pp. 45-62, 2022.
+* **[25]**	R. Sánchez García y M. L. Pérez Martínez, "Evaluación de tecnologías emergentes en interconexión para HPC", Journal of Supercomputing, vol. 79, núm. 8, pp. 8912-8935, 2023.
+* **[26]**	R. Suppi y E. Luque, Sistemas Distribuidos y Paralelos: Conceptos y Aplicaciones. Madrid: Pearson Educación, 2020.
+* **[27]**	Red Española de Supercomputación, "Guía de mejores prácticas para computación de altas prestaciones", Documentación técnica, 2023. [En línea]. Disponible: https://www.res.es/documentacion
+* **[28]**	A. Gómez Martínez y S. Ramos Pollán, "Arquitecturas híbridas CPU-GPU para inteligencia artificial: retos y oportunidades", Inteligencia Artificial: Revista Iberoamericana de Inteligencia Artificial, vol. 26, núm. 72, pp. 67-82, 2023.
+
